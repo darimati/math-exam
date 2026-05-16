@@ -465,7 +465,7 @@ window.MathJax = {
   </div>
 
   <!-- Answer toggle -->
-  <button class="toggle-btn no-print" onclick="toggleAnswers()">정답 및 풀이 힌트 보기</button>
+  <button class="toggle-btn no-print" onclick="toggleAnswers(event)">정답 및 풀이 힌트 보기</button>
 
   <!-- Answer Section -->
   <div class="answer-section hidden" id="answerSection">
@@ -546,9 +546,9 @@ function pick(el) {
   el.parentElement.querySelectorAll('.choice').forEach(c => c.classList.remove('selected'));
   el.classList.add('selected');
 }
-function toggleAnswers() {
+function toggleAnswers(e) {
   const section = document.getElementById('answerSection');
-  const btn = event.target;
+  const btn = e.currentTarget;
   section.classList.toggle('hidden');
   btn.textContent = section.classList.contains('hidden') ? '정답 및 풀이 힌트 보기' : '정답 숨기기';
 }
