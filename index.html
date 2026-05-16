@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2027학년도 6월 모의평가 미적분 예상문제</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+<style>
+  :root {
+    --bg: #fafaf9; --text: #1c1917; --muted: #78716c; --border: #e7e5e4;
+    --accent: #0c4a6e; --accent-light: #e0f2fe; --killer: #dc2626;
+    --semi: #f59e0b; --easy: #059669; --mid: #2563eb;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: var(--bg); color: var(--text);
+    line-height: 1.7; padding: 0;
+  }
+  .page {
+    max-width: 780px; margin: 0 auto; padding: 60px 40px;
+    background: white; min-height: 100vh;
+    box-shadow: 0 0 40px rgba(0,0,0,0.06);
+  }
+  @media print {
+    .page { box-shadow: none; padding: 20px 30px; }
+    .no-print { display: none !important; }
+    .problem { break-inside: avoid; }
+  }
+  @media (max-width: 640px) {
+    .page { padding: 30px 20px; }
+    h1 { font-size: 1.4rem !important; }
+  }
+
+  /* Header */
+  .exam-header {
+    text-align: center; padding-bottom: 32px;
+    border-bottom: 3px solid var(--text); margin-bottom: 36px;
+  }
+  .exam-header .year {
+    font-size: 13px; letter-spacing: 6px; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 8px;
+  }
+  h1 {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 1.75rem; font-weight: 700;
+    letter-spacing: -0.02em; margin-bottom: 4px;
+  }
+  .exam-header .sub {
+    font-size: 22px; font-weight: 500; color: var(--accent);
+    margin-bottom: 16px;
+  }
+  .exam-meta {
+    display: flex; justify-content: center; gap: 24px;
+    font-size: 12px; color: var(--muted);
+  }
+  .exam-meta span { display: flex; align-items: center; gap: 4px; }
+
+  /* Problem */
+  .problem {
+    margin-bottom: 36px; padding: 24px 28px;
+    border: 1px solid var(--border); border-radius: 12px;
+    background: white; position: relative;
+    transition: box-shadow 0.2s;
+  }
+  .problem:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
+  .problem-header {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 14px;
+  }
+  .problem-num {
+    width: 40px; height: 40px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 900; font-size: 16px; color: white;
+    flex-shrink: 0;
+  }
+  .problem-num.easy { background: var(--easy); }
+  .problem-num.mid { background: var(--mid); }
+  .problem-num.semi { background: var(--semi); }
+  .problem-num.killer { background: var(--killer); }
+  .problem-info {
+    display: flex; flex-direction: column; gap: 2px;
+  }
+  .problem-info .topic {
+    font-size: 13px; font-weight: 700; color: var(--text);
+  }
+  .problem-info .tags {
+    display: flex; gap: 6px; flex-wrap: wrap;
+  }
+  .tag {
+    font-size: 10px; padding: 2px 8px; border-radius: 99px;
+    font-weight: 500;
+  }
+  .tag.pts { background: #f0f9ff; color: #0369a1; }
+  .tag.diff-easy { background: #ecfdf5; color: #047857; }
+  .tag.diff-mid { background: #eff6ff; color: #1d4ed8; }
+  .tag.diff-semi { background: #fffbeb; color: #b45309; }
+  .tag.diff-killer { background: #fef2f2; color: #dc2626; }
+
+  .problem-body {
+    font-size: 15px; line-height: 1.85;
+    font-family: 'Noto Serif KR', serif;
+  }
+  .problem-body .condition {
+    margin: 12px 0; padding: 14px 20px;
+    background: #fafaf9; border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+  }
+  .problem-body .condition p { margin: 4px 0; }
+  .problem-body .ask {
+    margin-top: 14px; font-weight: 500;
+  }
+
+  /* Choices */
+  .choices {
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    gap: 8px; margin-top: 16px;
+  }
+  .choice {
+    text-align: center; padding: 10px 4px;
+    border: 1px solid var(--border); border-radius: 8px;
+    font-size: 14px; cursor: pointer; transition: all 0.15s;
+    font-family: 'Noto Serif KR', serif;
+  }
+  .choice:hover { border-color: var(--accent); background: var(--accent-light); }
+  .choice.selected { border-color: var(--accent); background: var(--accent); color: white; }
+
+  .short-answer {
+    margin-top: 16px; display: flex; align-items: center; gap: 8px;
+  }
+  .short-answer label { font-size: 13px; font-weight: 500; color: var(--muted); }
+  .short-answer input {
+    width: 160px; padding: 8px 14px; border: 2px solid var(--border);
+    border-radius: 8px; font-size: 16px; text-align: center;
+    font-family: 'Noto Serif KR', serif;
+    outline: none; transition: border-color 0.2s;
+  }
+  .short-answer input:focus { border-color: var(--accent); }
+
+  /* Answer Section */
+  .answer-section {
+    margin-top: 48px; padding-top: 32px;
+    border-top: 3px solid var(--text);
+  }
+  .answer-section h2 {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 20px; margin-bottom: 20px; text-align: center;
+  }
+  .answer-table {
+    width: 100%; border-collapse: collapse; font-size: 13px;
+  }
+  .answer-table th {
+    background: #f5f5f4; padding: 10px 12px;
+    text-align: left; font-weight: 700;
+    border-bottom: 2px solid var(--text);
+  }
+  .answer-table td {
+    padding: 10px 12px; border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .answer-table tr:hover td { background: #fafaf9; }
+  .answer-val { font-weight: 700; color: var(--accent); font-size: 14px; }
+
+  /* Difficulty bar */
+  .diff-section { margin-top: 36px; }
+  .diff-section h3 { font-size: 14px; font-weight: 700; margin-bottom: 12px; }
+  .diff-bar-row {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 6px; font-size: 12px;
+  }
+  .diff-bar-label { width: 36px; font-weight: 700; text-align: center; }
+  .diff-bar-track {
+    flex: 1; height: 8px; background: #f5f5f4; border-radius: 99px; overflow: hidden;
+  }
+  .diff-bar-fill { height: 100%; border-radius: 99px; }
+  .diff-bar-pct { width: 40px; text-align: right; color: var(--muted); }
+
+  /* Toggle */
+  .toggle-btn {
+    display: block; margin: 32px auto 0; padding: 12px 32px;
+    background: var(--accent); color: white; border: none;
+    border-radius: 8px; font-size: 14px; font-weight: 500;
+    cursor: pointer; transition: background 0.2s;
+  }
+  .toggle-btn:hover { background: #0a3a5c; }
+  .hidden { display: none; }
+
+  /* Footer */
+  .footer {
+    margin-top: 48px; padding-top: 20px;
+    border-top: 1px solid var(--border);
+    text-align: center; font-size: 11px; color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* Pattern table */
+  .pattern-table { margin-bottom: 36px; }
+  .pattern-table table {
+    width: 100%; border-collapse: collapse; font-size: 12px;
+  }
+  .pattern-table th {
+    background: var(--accent); color: white; padding: 8px 12px;
+    text-align: left; font-weight: 500;
+  }
+  .pattern-table td {
+    padding: 8px 12px; border-bottom: 1px solid var(--border);
+  }
+  .pattern-table tr:nth-child(even) td { background: #fafaf9; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="exam-header">
+    <div class="year">2027학년도 대학수학능력시험 대비</div>
+    <h1>6월 모의평가 예상문제</h1>
+    <div class="sub">수학영역 — 미적분</div>
+    <div class="exam-meta">
+      <span>문항 23~30번 (8문항)</span>
+      <span>배점 25점</span>
+      <span>풀이시간 약 30분</span>
+    </div>
+  </div>
+
+  <!-- Pattern Analysis -->
+  <div class="pattern-table no-print">
+    <table>
+      <thead>
+        <tr><th>번호</th><th>반복 출제 단원</th><th>최근 트렌드</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><b>23</b></td><td>수열의 극한 / 삼각함수 극한</td><td>lim 계산, 삼각함수 극한 공식</td></tr>
+        <tr><td><b>24</b></td><td>적분법 (정적분 계산)</td><td>치환적분, 부분적분</td></tr>
+        <tr><td><b>25</b></td><td>수열의 극한 / 급수</td><td>조건부 극한, 급수 수렴</td></tr>
+        <tr><td><b>26</b></td><td>적분 응용 (넓이/부피)</td><td>회전체 부피, 단면적</td></tr>
+        <tr><td><b>27</b></td><td>미분법 (역함수/합성함수)</td><td>역함수 미분, 합성함수 미분</td></tr>
+        <tr><td><b>28</b></td><td>미분 심화 (접선/극값)</td><td>변곡점, 이계도함수, 접선</td></tr>
+        <tr><td><b>29</b></td><td>무한급수 / 등비급수</td><td>삼각함수+등비급수, 도형+급수</td></tr>
+        <tr><td><b>30</b></td><td>미분 종합</td><td>함수 추론, 극값 조건 분석</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Problems -->
+
+  <!-- 23 -->
+  <div class="problem" id="q23">
+    <div class="problem-header">
+      <div class="problem-num easy">23</div>
+      <div class="problem-info">
+        <span class="topic">수열의 극한</span>
+        <div class="tags">
+          <span class="tag pts">2점</span>
+          <span class="tag diff-easy">기본 ~85%</span>
+        </div>
+      </div>
+    </div>
+    <div class="problem-body">
+      <p>$$\lim_{n \to \infty} \frac{3n^2 + 2n}{n^2 - n + 1} \times n\sin\frac{\pi}{2n}$$ 의 값은?</p>
+    </div>
+    <div class="choices">
+      <div class="choice" onclick="pick(this)">① $\dfrac{\pi}{2}$</div>
+      <div class="choice" onclick="pick(this)">② $\pi$</div>
+      <div class="choice" onclick="pick(this)">③ $\dfrac{3\pi}{2}$</div>
+      <div class="choice" onclick="pick(this)">④ $2\pi$</div>
+      <div class="choice" onclick="pick(this)">⑤ $3\pi$</div>
+    </div>
+  </div>
+
+  <!-- 24 -->
+  <div class="problem" id="q24">
+    <div class="problem-header">
+      <div class="problem-num easy">24</div>
+      <div class="problem-info">
+        <span class="topic">정적분 계산 (부분적분)</span>
+        <div class="tags">
+          <span class="tag pts">3점</span>
+          <span class="tag diff-easy">기본 ~75%</span>
+        </div>
+      </div>
+    </div>
+    <div class="problem-body">
+      <p>$$\int_0^{\frac{\pi}{2}} x \cos x \, dx$$ 의 값은?</p>
+    </div>
+    <div class="choices">
+      <div class="choice" onclick="pick(this)">① $1$</div>
+      <div class="choice" onclick="pick(this)">② $\dfrac{\pi}{2} - 1$</div>
+      <div class="choice" onclick="pick(this)">③ $\dfrac{\pi}{2}$</div>
+      <div class="choice" onclick="pick(this)">④ $\dfrac{\pi}{2} + 1$</div>
+      <div class="choice" onclick="pick(this)">⑤ $2$</div>
+    </div>
+  </div>
+
+  <!-- 25 -->
+  <div class="problem" id="q25">
+    <div class="problem-header">
+      <div class="problem-num easy">25</div>
+      <div class="problem-info">
+        <span class="topic">수열의 극한 (점화식)</span>
+        <div class="tags">
+          <span class="tag pts">3점</span>
+          <span class="tag diff-easy">기본+ ~65%</span>
+        </div>
+      </div>
+    </div>
+    <div class="problem-body">
+      <p>첫째항이 1인 수열 $\{a_n\}$이</p>
+      <div class="condition">
+        <p>$$a_{n+1} = \frac{a_n}{1 + a_n} \quad (n \geq 1)$$</p>
+      </div>
+      <p class="ask">을 만족시킬 때, $\displaystyle\lim_{n \to \infty} n \cdot a_n$ 의 값은?</p>
+    </div>
+    <div class="choices">
+      <div class="choice" onclick="pick(this)">① $\dfrac{1}{2}$</div>
+      <div class="choice" onclick="pick(this)">② $1$</div>
+      <div class="choice" onclick="pick(this)">③ $\dfrac{3}{2}$</div>
+      <div class="choice" onclick="pick(this)">④ $2$</div>
+      <div class="choice" onclick="pick(this)">⑤ $\dfrac{5}{2}$</div>
+    </div>
+  </div>
+
+  <!-- 26 -->
+  <div class="problem" id="q26">
+    <div class="problem-header">
+      <div class="problem-num mid">26</div>
+      <div class="problem-info">
+        <span class="topic">적분 응용 — 회전체의 부피</span>
+        <div class="tags">
+          <span class="tag pts">3점</span>
+          <span class="tag diff-mid">중상 ~50%</span>
+        </div>
+      </div>
+    </div>
+    <div class="problem-body">
+      <p>곡선 $y = \ln x$, 직선 $x = e$, $x$축으로 둘러싸인 영역을 $x$축 둘레로 회전시킨 회전체의 부피를 $V$라 할 때, $\dfrac{V}{\pi}$ 의 값은?</p>
+    </div>
+    <div class="choices">
+      <div class="choice" onclick="pick(this)">① $e - 2$</div>
+      <div class="choice" onclick="pick(this)">② $e - 1$</div>
+      <div class="choice" onclick="pick(this)">③ $2e - 5$</div>
+      <div class="choice" onclick="pick(this)">④ $e$</div>
+      <div class="choice" onclick="pick(this)">⑤ $2(e-2)$</div>
+    </div>
+  </div>
+
+  <!-- 27 -->
+  <div class="problem" id="q27">
+    <div class="problem-header">
+      <div class="problem-num mid">27</div>
+      <div class="problem-info">
+        <span class="topic">역함수의 미분</span>
+        <div class="tags">
+          <span class="tag pts">3점</span>
+          <span class="tag diff-mid">중상 ~45%</span>
+        </div>
+      </div>
+    </div>
+    <div class="problem-body">
+      <p>함수 $f(x) = x^3 + 3x + 1$ 의 역함수를 $g(x)$라 하자.</p>
+      <p class="ask">$g'(5)$ 의 값은?</p>
+    </div>
+    <div class="choices">
+      <div class="choice" onclick="pick(this)">① $\dfrac{1}{3}$</div>
+      <div class="choice" onclick="pick(this)">② $\dfrac{1}{6}$</div>
+      <div class="choice" onclick="pick(this)">③ $\dfrac{1}{9}$</div>
+      <div class="choice" onclick="pick(this)">④ $\dfrac{1}{12}$</div>
+      <div class="choice" onclick="pick(this)">⑤ $\dfrac{1}{15}$</div>
+    </div>
+  </div>
+
+  <!-- 28 -->
+  <div class="problem" id="q28">
+    <div class="problem-header">
+      <div class="problem-num semi">28</div>
+      <div class="problem-info">
+        <span class="topic">미분 심화 — 이계도함수 조건</span>
+        <div class="tags">
+          <span class="tag pts">4점</span>
+          <span class="tag diff-semi">준킬러 ~25%</span>
+        </div>
+      </div>
+    </div>
+    <div class="problem-body">
+      <p>실수 전체의 집합에서 이계도함수를 가지는 함수 $f(x)$가 다음 조건을 만족시킨다.</p>
+      <div class="condition">
+        <p>(가) $f(0) = 0, \quad f'(0) = 2$</p>
+        <p>(나) 모든 실수 $x$에 대하여 $f''(x) + f(x) = 2\cos x$</p>
+      </div>
+      <p class="ask">$f(\pi)$ 의 값은?</p>
+    </div>
+    <div class="choices">
+      <div class="choice" onclick="pick(this)">① $-\pi$</div>
+      <div class="choice" onclick="pick(this)">② $-2$</div>
+      <div class="choice" onclick="pick(this)">③ $0$</div>
+      <div class="choice" onclick="pick(this)">④ $\pi$</div>
+      <div class="choice" onclick="pick(this)">⑤ $2\pi$</div>
+    </div>
+  </div>
+
+  <!-- 29 -->
+  <div class="problem" id="q29">
+    <div class="problem-header">
+      <div class="problem-num semi">29</div>
+      <div class="problem-info">
+        <span class="topic">무한급수 + 도형</span>
+        <div class="tags">
+          <span class="tag pts">4점</span>
+          <span class="tag diff-semi">준킬러 ~15%</span>
+          <span class="tag pts">단답형</span>
+        </div>
+      </div>
+    </div>
+    <div class="problem-body">
+      <p>자연수 $n$에 대하여 점 $(n, 0)$에서 곡선 $y = e^x$에 그은 접선의 접점을 $\mathrm{P}_n$이라 하고, $\mathrm{P}_n$에서 $x$축에 내린 수선의 발을 $\mathrm{H}_n$이라 하자.</p>
+      <p>삼각형 $\mathrm{OP}_n\mathrm{H}_n$의 넓이를 $S_n$이라 할 때,</p>
+      <p style="text-align:center; margin: 16px 0; font-size: 17px;">
+        $$\sum_{n=1}^{\infty} S_n \cdot \left(\frac{1}{e}\right)^n$$
+      </p>
+      <p class="ask">의 값을 구하시오.</p>
+    </div>
+    <div class="short-answer">
+      <label>답:</label>
+      <input type="text" placeholder="정수 입력" id="ans29">
+    </div>
+  </div>
+
+  <!-- 30 -->
+  <div class="problem" id="q30">
+    <div class="problem-header">
+      <div class="problem-num killer">30</div>
+      <div class="problem-info">
+        <span class="topic">미분 종합 — 함수 추론</span>
+        <div class="tags">
+          <span class="tag pts">4점</span>
+          <span class="tag diff-killer">킬러 ~5%</span>
+          <span class="tag pts">단답형</span>
+        </div>
+      </div>
+    </div>
+    <div class="problem-body">
+      <p>최고차항의 계수가 1인 삼차함수 $f(x)$와 실수 $t$에 대하여</p>
+      <p style="text-align:center; margin: 12px 0;">
+        $$g(t) = \int_0^1 |f(x) - t| \, dx$$
+      </p>
+      <p>라 하자. 함수 $g(t)$가 다음 조건을 만족시킨다.</p>
+      <div class="condition">
+        <p>(가) $g(t)$는 $t = \alpha,\; t = \beta \;(\alpha < \beta)$에서만 미분불가능하다.</p>
+        <p>(나) $g'(t) = 0$인 $t$의 값이 정확히 하나 존재한다.</p>
+        <p>(다) $g(\alpha) = g(\beta)$</p>
+      </div>
+      <p class="ask">$f(3)$ 의 값을 구하시오.</p>
+    </div>
+    <div class="short-answer">
+      <label>답:</label>
+      <input type="text" placeholder="정수 입력" id="ans30">
+    </div>
+  </div>
+
+  <!-- Answer toggle -->
+  <button class="toggle-btn no-print" onclick="toggleAnswers()">정답 및 풀이 힌트 보기</button>
+
+  <!-- Answer Section -->
+  <div class="answer-section hidden" id="answerSection">
+    <h2>정답 및 풀이 힌트</h2>
+    <table class="answer-table">
+      <thead>
+        <tr><th>번호</th><th>정답</th><th>풀이 힌트</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>23</b></td>
+          <td class="answer-val">③ $\dfrac{3\pi}{2}$</td>
+          <td>$\displaystyle\lim_{n\to\infty}\frac{3n^2+2n}{n^2-n+1}=3$, &nbsp; $\displaystyle\lim_{n\to\infty} n\sin\frac{\pi}{2n}=\frac{\pi}{2}$ &nbsp;→&nbsp; $3 \times \dfrac{\pi}{2} = \dfrac{3\pi}{2}$</td>
+        </tr>
+        <tr>
+          <td><b>24</b></td>
+          <td class="answer-val">② $\dfrac{\pi}{2}-1$</td>
+          <td>부분적분: $\big[x\sin x + \cos x\big]_0^{\pi/2} = \dfrac{\pi}{2} - 1$</td>
+        </tr>
+        <tr>
+          <td><b>25</b></td>
+          <td class="answer-val">② $1$</td>
+          <td>$\dfrac{1}{a_{n+1}} = \dfrac{1}{a_n} + 1$ &nbsp;→&nbsp; $\dfrac{1}{a_n} = n$ &nbsp;→&nbsp; $a_n = \dfrac{1}{n}$ &nbsp;→&nbsp; $n \cdot a_n = 1$</td>
+        </tr>
+        <tr>
+          <td><b>26</b></td>
+          <td class="answer-val">① $e-2$</td>
+          <td>$V = \pi\displaystyle\int_1^e (\ln x)^2\,dx$, 부분적분 2회 → $\pi(e-2)$</td>
+        </tr>
+        <tr>
+          <td><b>27</b></td>
+          <td class="answer-val">② $\dfrac{1}{6}$</td>
+          <td>$f(1)=5$ → $g(5)=1$, &nbsp; $g'(5) = \dfrac{1}{f'(1)} = \dfrac{1}{3(1)^2+3} = \dfrac{1}{6}$</td>
+        </tr>
+        <tr>
+          <td><b>28</b></td>
+          <td class="answer-val">④ $\pi$</td>
+          <td>$y''+y=2\cos x$의 특수해 $y_p = x\sin x$, 일반해에 초기조건 대입 → $f(\pi) = \pi$</td>
+        </tr>
+        <tr>
+          <td><b>29</b></td>
+          <td class="answer-val">계산형</td>
+          <td>접점 $(t_n, e^{t_n})$에서 접선 → $S_n$ 구한 뒤 등비급수 합 계산</td>
+        </tr>
+        <tr>
+          <td><b>30</b></td>
+          <td class="answer-val">계산형</td>
+          <td>$g(t)$ 미분불가능 → $t = f$의 극값, 조건 (가)(나)(다)로 삼차함수 계수 결정</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Difficulty -->
+    <div class="diff-section">
+      <h3>난이도 설계</h3>
+      <div class="diff-bar-row"><span class="diff-bar-label">23</span><div class="diff-bar-track"><div class="diff-bar-fill" style="width:85%;background:var(--easy)"></div></div><span class="diff-bar-pct">~85%</span></div>
+      <div class="diff-bar-row"><span class="diff-bar-label">24</span><div class="diff-bar-track"><div class="diff-bar-fill" style="width:75%;background:var(--easy)"></div></div><span class="diff-bar-pct">~75%</span></div>
+      <div class="diff-bar-row"><span class="diff-bar-label">25</span><div class="diff-bar-track"><div class="diff-bar-fill" style="width:65%;background:var(--easy)"></div></div><span class="diff-bar-pct">~65%</span></div>
+      <div class="diff-bar-row"><span class="diff-bar-label">26</span><div class="diff-bar-track"><div class="diff-bar-fill" style="width:50%;background:var(--mid)"></div></div><span class="diff-bar-pct">~50%</span></div>
+      <div class="diff-bar-row"><span class="diff-bar-label">27</span><div class="diff-bar-track"><div class="diff-bar-fill" style="width:45%;background:var(--mid)"></div></div><span class="diff-bar-pct">~45%</span></div>
+      <div class="diff-bar-row"><span class="diff-bar-label">28</span><div class="diff-bar-track"><div class="diff-bar-fill" style="width:25%;background:var(--semi)"></div></div><span class="diff-bar-pct">~25%</span></div>
+      <div class="diff-bar-row"><span class="diff-bar-label">29</span><div class="diff-bar-track"><div class="diff-bar-fill" style="width:15%;background:var(--semi)"></div></div><span class="diff-bar-pct">~15%</span></div>
+      <div class="diff-bar-row"><span class="diff-bar-label">30</span><div class="diff-bar-track"><div class="diff-bar-fill" style="width:5%;background:var(--killer)"></div></div><span class="diff-bar-pct">~5%</span></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    본 문제지는 2022~2026학년도 평가원 출제 패턴을 기반으로 AI가 생성한 예상문제입니다.<br>
+    실제 평가원 문제와는 무관하며, 학습 참고용으로만 활용하세요.<br>
+    <span style="margin-top:4px;display:inline-block">Generated by winter.a &middot; 2026.05.16</span>
+  </div>
+
+</div>
+
+<script>
+function pick(el) {
+  el.parentElement.querySelectorAll('.choice').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+}
+function toggleAnswers() {
+  const section = document.getElementById('answerSection');
+  const btn = event.target;
+  section.classList.toggle('hidden');
+  btn.textContent = section.classList.contains('hidden') ? '정답 및 풀이 힌트 보기' : '정답 숨기기';
+}
+</script>
+</body>
+</html>
